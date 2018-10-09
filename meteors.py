@@ -2,7 +2,7 @@ import math
 import requests
 
 
-houseCoordinates = (52.08673121780718, 5.049856391142839)
+
 
 
 def calc_dist(lat1, lon1, lat2, lon2):
@@ -39,13 +39,16 @@ def get_distance(meteor):
     return meteor.get('distance', math.inf)
 
 
-nasaResponse = requests.get('https://data.nasa.gov/resource/y77d-th95.json')
-meteor_data = nasaResponse.json()
-calculateAndAddDistancesOfMeteors()
+if __name__ == '__main__':
+    houseCoordinates = (52.08673121780718, 5.049856391142839)
 
-meteor_data.sort(key=get_distance)
+    nasaResponse = requests.get('https://data.nasa.gov/resource/y77d-th95.json')
+    meteor_data = nasaResponse.json()
+    calculateAndAddDistancesOfMeteors()
 
-print(meteor_data[:10])
+    meteor_data.sort(key=get_distance)
+    
+    print(meteor_data[:10])
 
 
 
